@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.NoHandlerFoundException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @ControllerAdvice
 @Slf4j
@@ -38,6 +39,14 @@ public class GlobalExceptionHandler {
         log.warn("No handler found: {}", ex.getRequestURL());
         model.addAttribute("errorCode", "404");
         model.addAttribute("errorMessage", "Page not found: " + ex.getRequestURL());
+        return "error/404";
+    }
+
+    @ExceptionHandler(NoResourceFoundException.class)
+    public String handleNoResource(NoResourceFoundException ex, Model model) {
+        log.warn("Static resource not found: {}", ex.getMessage());
+        model.addAttribute("errorCode", "404");
+        model.addAttribute("errorMessage", "Static resource not found: " + ex.getMessage());
         return "error/404";
     }
 

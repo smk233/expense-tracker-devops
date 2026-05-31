@@ -68,12 +68,21 @@ INSERT IGNORE INTO roles (name) VALUES ('ROLE_ADMIN');
 -- BCrypt hash of 'admin123'
 INSERT IGNORE INTO users (first_name, last_name, email, password, enabled)
 VALUES ('Admin', 'User', 'admin@expense.com',
-        '$2a$12$92PfU0rKJjSQkVJpCmMmFOTJzOOYJOIUAFQHCdYJcGWJNxaOYP.5K', TRUE);
+        '$2a$12$oEDnFZTufVPTOR8DKRB1G.8TxdY705bWWNv4fq8d4jBVNW4mS9wNe', TRUE);
 
 -- Insert Demo User (password: user123)
 INSERT IGNORE INTO users (first_name, last_name, email, password, enabled)
 VALUES ('John', 'Doe', 'john@expense.com',
-        '$2a$12$6iB5PVA0FsVQAIJLb44ADuwvvAbf5m9r1jMk6xZf/gPm8MaUO5qOy', TRUE);
+        '$2a$12$84RmK9UzWProEGa9j1y2gO7H674n1.9N9SWk3ZluPUoloTP2C0GSC', TRUE);
+
+-- Keep demo passwords correct even if users already existed before this script ran
+UPDATE users
+SET password = '$2a$12$oEDnFZTufVPTOR8DKRB1G.8TxdY705bWWNv4fq8d4jBVNW4mS9wNe'
+WHERE email = 'admin@expense.com';
+
+UPDATE users
+SET password = '$2a$12$84RmK9UzWProEGa9j1y2gO7H674n1.9N9SWk3ZluPUoloTP2C0GSC'
+WHERE email = 'john@expense.com';
 
 -- Assign Roles
 INSERT IGNORE INTO user_roles (user_id, role_id)

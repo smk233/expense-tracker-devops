@@ -4,6 +4,7 @@ public enum PaymentMethod {
     CASH("Cash"),
     CREDIT_CARD("Credit Card"),
     ONLINE_TRANSFER("Online Transfer"),
+    DEBIT_CARD("Debit Card"),
     UPI("UPI"),
     OTHER("Other");
 
