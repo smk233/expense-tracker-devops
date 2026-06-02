@@ -271,47 +271,41 @@ http://<EC2-PUBLIC-IP>:8080
 
 # 📸 Project Screenshots
 
-## Architecture
+## 🏗️ Architecture
 
-```markdown
 ![Architecture](screenshots/architecture.png)
-```
-## Login Page
 
-```markdown
+---
+
+## 🔐 Login Page
+
 ![Login Page](screenshots/login_page.png)
-```
 
-## Registration Page
+---
 
-```markdown
+## 📝 Registration Page
+
 ![Registration Page](screenshots/registration_page.png)
-```
 
-## Dashboard 
+---
 
-```markdown
+## 📊 Dashboard
+
 ![Dashboard](screenshots/user_dashboard.png)
+
 ![Dashboard](screenshots/user_dashboard2.png)
-```
 
-## Expense List
+---
 
-```markdown
-![Expense List](screenshots/expenses.png)
-```
+## ➕ Add Expense
 
-## Add Expenses
+![Add Expense](screenshots/add_expenses.png)
 
-```markdown
-![Add Expenses](screenshots/add_expenses.png)
-```
+---
 
-## My Expenses
+## 📋 My Expenses
 
-```markdown
 ![My Expenses](screenshots/my_expenses.png)
-```
 
 ---
 
