@@ -10,6 +10,6 @@ RUN mvn clean install -DskipTest=true
 # Stage 2 : Execute the JAR file from the above stage 
 FROM eclipse-temurin:17-jre 
 
-COPY --from=builder /app/target/*.jar /app/expense-tracker.jar
+COPY --from=builder /app/target/*.jar expense-tracker.jar
 
 CMD ["java","-jar","expense-tracker.jar"]
