@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  java_app:
+    build:
+      context: .
+    container_name: "expense-tracker"
+    networks:
+      - expense-app-nw
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mysql://mysql_db:3306/expense_tracker_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true"
+      SPRING_DATASOURCE_USERNAME: "expense_user"
+      SPRING_DATASOURCE_PASSWORD: "expense123"
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql_db:
+        condition: service_healthy
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL","curl -f http://localhost:8080 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+
+  mysql_db:
+    image: mysql:8.3
+    container_name: "mysql_db"
+    networks: 
+      - expense-app-nw
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "expense_tracker_db"
+      MYSQL_USER: "expense_user"
+      MYSQL_PASSWORD: "expense123"
+    restart: always
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD","mysqladmin","ping","-h","localhost","-uexpense_user","-pexpense123"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+networks:
+  expense-app-nw:
+volumes:
+  mysql_data:
